@@ -1,6 +1,7 @@
 package com.example.healthyapp.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.healthyapp.Adapter.SimilarAdapter;
 import com.example.healthyapp.Domain.ItemsDomain;
 import com.example.healthyapp.R;
 
@@ -31,6 +33,15 @@ public class DetailActivity extends AppCompatActivity {
         getBundles();
         initView();
         setVariable();
+        initSimilarList();
+    }
+
+    private void initSimilarList() {
+        recyclerViewSimilar=findViewById(R.id.similarView);
+        recyclerViewSimilar.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
+
+        similarAdapter=new SimilarAdapter(new MainActivity().getData());
+        recyclerViewSimilar.setAdapter(similarAdapter);
     }
 
     private void setVariable() {
